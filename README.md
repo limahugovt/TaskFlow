@@ -7,7 +7,7 @@ erDiagram
         string email
         string senha
     }
-    
+
     Board {
         int board_id PK
         string nome
@@ -15,7 +15,7 @@ erDiagram
         datetime criado_em
         int user_id FK
     }
-    
+
     List {
         int list_id PK
         string nome
@@ -23,7 +23,7 @@ erDiagram
         int ordem
         int board_id FK
     }
-    
+
     Card {
         int card_id PK
         string titulo
@@ -32,12 +32,12 @@ erDiagram
         datetime data_entrega
         int list_id FK
     }
-    
+
     Membro_Card {
         int card_id FK
         int user_id FK
     }
-    
+
     Comment {
         int comment_id PK
         string conteudo
@@ -45,7 +45,7 @@ erDiagram
         int user_id FK
         int card_id FK
     }
-    
+
     Attachment {
         int attachment_id PK
         string nome_arquivo
@@ -53,7 +53,7 @@ erDiagram
         datetime data_upload
         int card_id FK
     }
-    
+
     User ||--o{ Board : "cria"
     Board ||--o{ List : "contém"
     List ||--o{ Card : "contém"
