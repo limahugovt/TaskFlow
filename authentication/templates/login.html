@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+    {% load static %}
+    <section class="container-login">
+        <div class="div-logo">
+            <img src="{% static 'assets/LogoText.svg' %}"
+                 alt="logo"
+                 height="auto"
+                 width="auto" />
+        </div>
+        <form class="form-post">
+            <div class="input-container">
+                <p>Email</p>
+                <input type="email" name="email" placeholder="Digite seu email..." />
+            </div>
+            <div class="input-container">
+                <p>Senha</p>
+                <input type="password" name="password" placeholder="Digite sua senha..." />
+            </div>
+            <div class="div-options-form">
+                <div class="option-remember">
+                    <input type="checkbox" name="remember" id="remember" />
+                    <label for="remember">Lembrar de mim</label>
+                </div>
+                <div class="option-lost">
+                    <a href="#">Esqueceu sua senha?</a>
+                </div>
+            </div>
+            <button class="button-submit" type="submit">ENTRAR</button>
+        </form>
+        <p class="not-account">
+            Ainda não tem conta? <a href="{% url 'register' %}">Cadastre-se</a>
+        </p>
+    </section>
+{% endblock content %}
