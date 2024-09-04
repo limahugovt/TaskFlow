@@ -13,4 +13,4 @@ known_first_party = ["config"]
 
 [tool.djlint]
 profile = "django"
-ignore = ["H031", "T003", "H030"]
+ignore = "H031, H030, H031, D018, H006"
