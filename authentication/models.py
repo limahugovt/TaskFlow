@@ -1,24 +1,38 @@
 from django.db import models
-from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.models import BaseUserManager, AbstractBaseUser, PermissionsMixin
 from django.utils import timezone
 
 class UserManager(BaseUserManager):
-  def create_user(self, username, email, password=None):
-    if username is None:
+  def create_user(self, name, email, password=None, **extra_fields):
+    if name is None:
       raise ValueError('User must provide a name')
     if email is None:
       raise ValueError('User must provide an email')
 
-    user = self.model(username=username, email=self.normalize_email(email))
+    user = self.model(name=name, email=self.normalize_email(email), **extra_fields)
     user.set_password(password)
     user.save(using=self._db)
     return user
 
-class User(AbstractBaseUser):
+  def create_superuser(self, name, email, password=None, **extra_fields):
+    extra_fields.setdefault('is_staff', True)
+    extra_fields.setdefault('is_superuser', True)
+
+    if extra_fields.get('is_staff') is not True:
+      raise ValueError('O superusuário precisa ter is_staff=True.')
+    if extra_fields.get('is_superuser') is not True:
+      raise ValueError('O superusuário precisa ter is_superuser=True.')
+
+    return self.create_user(name=name, email=email, password=password, **extra_fields)
+class User(AbstractBaseUser, PermissionsMixin):
   user_id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=255)
   email = models.EmailField(max_length=255, unique=True)
   password = models.CharField(max_length=255)
+  is_superuser = models.BooleanField(default=False)
+  is_staff = models.BooleanField(default=False)
+  is_admin = models.BooleanField(default=False)
+
   USERNAME_FIELD = 'email'
   REQUIRED_FIELDS = ['name']
 

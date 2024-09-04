@@ -1,29 +1,30 @@
 {% extends "base.html" %}
+{% block title %}
+    Login - TaskFlow
+{% endblock title %}
 {% block content %}
-    {% load static %}
     <section class="container-login">
         <div class="div-logo">
+            {% load static %}
             <img src="{% static 'assets/LogoText.svg' %}"
                  alt="logo"
                  height="auto"
                  width="auto" />
         </div>
-        <form class="form-post">
+        <form class="form-post" method="post">
+            {% csrf_token %}
             <div class="input-container">
                 <p>Email</p>
-                <input type="email" name="email" placeholder="Digite seu email..." />
+                {{ form.email }}
             </div>
             <div class="input-container">
                 <p>Senha</p>
-                <input type="password" name="password" placeholder="Digite sua senha..." />
+                {{ form.password }}
             </div>
             <div class="div-options-form">
                 <div class="option-remember">
                     <input type="checkbox" name="remember" id="remember" />
                     <label for="remember">Lembrar de mim</label>
-                </div>
-                <div class="option-lost">
-                    <a href="#">Esqueceu sua senha?</a>
                 </div>
             </div>
             <button class="button-submit" type="submit">ENTRAR</button>
