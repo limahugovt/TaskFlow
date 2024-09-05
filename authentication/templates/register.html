@@ -1,16 +1,14 @@
 {% extends "base.html" %}
-{% block title %}
-    Cadastro - TaskFlow
-{% endblock
-title %}
 {% block content %}
     <section class="register-container">
         <div class="div-logo">
             {% load static %}
-            <img src="{% static 'assets/LogoText.svg' %}"
-                 alt="logo"
-                 height="auto"
-                 width="auto" />
+            <a href="{% url 'home' %}">
+                <img src="{% static 'assets/LogoText.svg' %}"
+                     alt="logo"
+                     height="auto"
+                     width="auto" />
+            </a>
         </div>
         <form class="form-post" method="post">
             {% csrf_token %}
@@ -43,3 +41,6 @@ title %}
         </p>
     </section>
 {% endblock content %}
+{% block title %}
+    Cadastro - TaskFlow
+{% endblock title %}

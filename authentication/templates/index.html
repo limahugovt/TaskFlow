@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="description" content="Description of the page content" />
+        <title>Tela</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'styles/home.css' %}" />
+    </head>
+    <body>
+        <section class="container-1">
+            <header>
+                <a href="#">
+                    <img src="{% static 'assets/Logo.svg' %}"
+                         alt="logo"
+                         height="auto"
+                         width="auto" />
+                </a>
+                <nav>
+                    <div class="div-button">
+                        <img src="{% static 'assets/IconAbout.svg' %}"
+                             alt="icon"
+                             height="auto"
+                             width="auto" />
+                        <a href="">Sobre</a>
+                    </div>
+                    <div class="div-button">
+                        <img src="{% static 'assets/IconSend.svg' %}"
+                             alt="icon"
+                             height="auto"
+                             width="auto" />
+                        <a href="">Contato</a>
+                    </div>
+                    <div class="div-button">
+                        <img src="{% static 'assets/IconSmile.svg' %}"
+                             alt="icon"
+                             height="auto"
+                             width="auto" />
+                        <a href="">Ajuda</a>
+                    </div>
+                </nav>
+                <div class="auth-buttons">
+                    <div class="div-button">
+                        <img src="{% static 'assets/iconLogin.svg' %}"
+                             alt="icon"
+                             height="auto"
+                             width="auto" />
+                        <a href="{% url 'login' %}">Entrar</a>
+                    </div>
+                    <div class="div-button">
+                        <img src="{% static 'assets/IconUser.svg' %}"
+                             alt="icon"
+                             height="auto"
+                             width="auto" />
+                        <a href="{% url 'register' %}">Cadastrar</a>
+                    </div>
+                </div>
+            </header>
+            <div class="hero">
+                <div class="div-texts">
+                    <h1>
+                        Transforme a <span class="span-1">colaboração</span> em
+                        <span class="span-2">resultados</span>
+                    </h1>
+                    <p>
+                        Organize tarefas em grupo com a metodologia scrum e alcance seus
+                        ojetivos com agilidade e eficiência
+                    </p>
+                    <a href="{% url 'login' %}">
+                        <button>Comece agora!</button>
+                    </a>
+                </div>
+                <img src="{% static 'assets/Hero.svg' %}"
+                     alt="img"
+                     height="auto"
+                     width="auto" />
+            </div>
+        </section>
+        <section class="container-functions">
+        </section>
+    </body>
+</html>
