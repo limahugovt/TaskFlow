@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  background-color: #F6F8FA;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-main {
+  background-color: #fff;
+  width: 238px;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.header-card {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  p {
+    font-size: 16px;
+    font-weight: 700;
+    color: #353A3D;
+  }
+}
+
+
+.div-hours {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #0098B4;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.content-description {
+  background-color: #F9F9F9;
+  width: 205;
+  height: 105px;
+  border-radius: 4px;
+  gap: 8px;
+  padding: 8px;
+
+}
+
+.title-card {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.description {
+  font-size: 14px;
+  color: #687075;
+}
+
+.div-labels {
+  display: flex;
+  gap: 4px;
+}
+
+.label {
+  padding: 5px 12px;
+  background-color: red;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 500;
+}

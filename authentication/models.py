@@ -24,6 +24,7 @@ class UserManager(BaseUserManager):
       raise ValueError('O superusuário precisa ter is_superuser=True.')
 
     return self.create_user(name=name, email=email, password=password, **extra_fields)
+
 class User(AbstractBaseUser, PermissionsMixin):
   user_id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=255)
@@ -37,6 +38,9 @@ class User(AbstractBaseUser, PermissionsMixin):
   REQUIRED_FIELDS = ['name']
 
   objects = UserManager()
+
+  def __str__(self):
+    return self.name
 
 class Board(models.Model):
   board_id = models.AutoField(primary_key=True)
@@ -52,13 +56,37 @@ class List(models.Model):
   order = models.IntegerField()
   board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
+class EpicLink(models.Model):
+  epic_link_id = models.AutoField(primary_key=True)
+  name = models.CharField(max_length=255)
+  description = models.TextField()
+
+  def __str__(self):
+    return self.name
+
 class Card(models.Model):
+  PRIORITY_CHOICES = [
+    (0, 'Normal'),
+    (1, 'Moderado'),
+    (2, 'Alto'),
+    (3, 'Muito Alto')
+  ]
   card_id = models.AutoField(primary_key=True)
   title = models.CharField(max_length=255)
   description = models.TextField()
   creation_date = models.DateTimeField(default=timezone.now)
   delivery_date = models.DateTimeField(null=True, blank=True)
+  priority = models.IntegerField(default=0, choices=PRIORITY_CHOICES)
+  epic_link = models.ForeignKey(EpicLink, on_delete=models.CASCADE, null=True, blank=True)
   list = models.ForeignKey(List, on_delete=models.CASCADE)
+  user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+  def __str__(self):
+    return self.title
+  
+  def get_priority_display(self):
+    return dict(self.PRIORITY_CHOICES)[self.priority]
+  
 
 class MemberCard(models.Model):
   card = models.ForeignKey(Card, on_delete=models.CASCADE)
@@ -80,3 +108,4 @@ class Attachment(models.Model):
   file_url = models.URLField()
   upload_date = models.DateTimeField(default=timezone.now)
   card = models.ForeignKey(Card, on_delete=models.CASCADE)
+
