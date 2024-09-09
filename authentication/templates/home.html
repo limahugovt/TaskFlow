@@ -11,46 +11,44 @@
 
 <body>
   <h1>Quadros</h1>
-  <div>
-    <div>
-      <h2>Pendentes</h2>
-      {% for card in card %}
-      <div class="card-main">
-        <div class="header-card">
-          <div class="user-info">
-            <img src="{% static 'assets/userImage.svg' %}"
-                         alt="logo"
-                         height="25px"
-                         width="25px" />
-            <p>{{ card.user }}</p>
+  <div class="content-cards">
+    {% for list in list %}
+    <div class="vertical-list">
+      <h2 class="list-name">{{ list.name }}</h2>
+      <div class="cards-list">
+        {% for card in list.card_set.all %}
+        <div class="card-main">
+          <div class="header-card">
+            <div class="user-info">
+              <img src="{% static 'assets/userImage.svg' %}" alt="logo" height="25px" width="25px" />
+              <p>{{ card.user }}</p>
+            </div>
+            <div class="div-hours">
+              <img src="{% static 'assets/iconClock.svg' %}" alt="logo" height="16px" width="16px" />
+              <p>há {{ card.delivery_date|time:"H:i" }}</p>
+            </div>
           </div>
-          <div class="div-hours">
-            <img src="{% static 'assets/iconClock.svg' %}"
-                         alt="logo"
-                         height="16px"
-                         width="16px" />
-            <p>há {{ card.delivery_date|time:"H:i" }}</p>
+          <div class="content-description">
+            <h3 class="title-card">
+              {{ card.title }}
+            </h3>
+            <p class="description">
+              {{ card.description }}
+            </p>
           </div>
-        </div>
-        <div class="content-description">
-          <h3 class="title-card">
-            {{ card.title }}
-          </h3>
-          <p class="description">
-            {{ card.description }}
-          </p>
-        </div>
-        <div class="div-labels">
-          <div class="label" style="background-color: #FFB1B1;">
-            <p>{{ card.priority }}</p>
-          </div>
-          <div class="label" style="background-color: #B1D3FF;">
-            <p>{{ card.epic_link }}</p>
+          <div class="div-labels">
+            <div class="label" style="background-color: #FFB1B1;">
+              <p>{{ card.get_priority_display }}</p>
+            </div>
+            <div class="label" style="background-color: #B1D3FF;">
+              <p>{{ card.epic_link }}</p>
+            </div>
           </div>
         </div>
+        {% endfor %}
       </div>
-      {% endfor %}
     </div>
+    {% endfor %}
   </div>
 </body>
 

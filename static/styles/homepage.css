@@ -83,3 +83,27 @@ body {
   font-size: 12px;
   font-weight: 500;
 }
+
+.vertical-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 254px;
+}
+
+.list-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #37474F;
+}
+
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.content-cards {
+  display: flex;
+  gap: 28px;
+}
