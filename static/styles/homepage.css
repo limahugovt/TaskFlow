@@ -12,6 +12,8 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  gap: 24px;
+  height: 100vh;
 }
 
 .card-main {
@@ -106,4 +108,18 @@ body {
 .content-cards {
   display: flex;
   gap: 28px;
+}
+
+.add-card {
+  width: 100%;
+  padding: 5px 10px;
+  background-color: #0098B4;
+  border: none;
+  border-radius: 8px;
+  display: flex;
+  justify-content: flex-start;
+  color: #fff;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
 }
