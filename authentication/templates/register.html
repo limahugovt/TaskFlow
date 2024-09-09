@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+    <section class="register-container">
+        <div class="div-logo">
+            {% load static %}
+            <a href="{% url 'home' %}">
+                <img src="{% static 'assets/LogoText.svg' %}"
+                     alt="logo"
+                     height="auto"
+                     width="auto" />
+            </a>
+        </div>
+        <form class="form-post" method="post">
+            {% csrf_token %}
+            <div class="input-container">
+                <p>Nome</p>
+                {{ form.name }}
+            </div>
+            <div class="input-container">
+                <p>Email</p>
+                {{ form.email }}
+            </div>
+            <div class="input-container">
+                <p>Senha</p>
+                {{ form.password }}
+            </div>
+            <div class="input-container">
+                <p>Repita sua senha</p>
+                {{ form.password_confirm }}
+            </div>
+            <div class="div-terms">
+                <div class="option-remember">
+                    <input type="checkbox" name="remember" id="remember" />
+                    <label for="remember">Eu li e aceito os Termos de Uso e a Política de Privacidade</label>
+                </div>
+            </div>
+            <button class="button-submit" type="submit">CADASTRAR</button>
+        </form>
+        <p class="not-account">
+            Já tem conta? <a href="{% url 'login' %}">Login</a>
+        </p>
+    </section>
+{% endblock content %}
+{% block title %}
+    Cadastro - TaskFlow
+{% endblock title %}
