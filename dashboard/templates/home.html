@@ -61,83 +61,71 @@
         </div>
         <div id="myModal" class="modal">
             <div class="modal-content">
-                <form class="form-register">
+                <form class="form-register" method="post" action="{% url 'create_card' %}">
+                    {% csrf_token %}
                     <div class="header-modal">
                         <div class="div-options">
                             <div class="select-header">
-                                <select name="" id="" style="background-color: #ffb1ff; color: #9d257d">
-                                    <option value="0">Epic Link</option>
-                                </select>
-                                <img src="{% static 'assets/arrowDonw.svg' %}" alt="oi" />
+                                {{ form.epic_link }}
+                                <img src="{% static 'assets/arrowDonw.svg' %}"
+                                     alt="arrow-donw"
+                                     width="10px"
+                                     height="5px" />
                             </div>
                             <div class="select-header">
-                                <select name="" id="" style="background-color: #ffb1b3; color: #9d2527">
-                                    <option value="0">Prioridade</option>
-                                </select>
-                                <img src="{% static 'assets/arrowDonw.svg' %}" alt="oi" />
+                                {{ form.priority }}
+                                <img src="{% static 'assets/arrowDonw.svg' %}"
+                                     alt="arrow-donw"
+                                     width="10px"
+                                     height="5px" />
                             </div>
-                            <div class="select-header">
-                                <select name="" id="" style="background-color: #ffd6b1; color: #9d2527">
-                                    <option value="0">Prazo</option>
-                                </select>
-                                <img src="{% static 'assets/arrowDonw.svg' %}" alt="oi" />
-                            </div>
+                            <div class="select-header">{{ form.delivery_date }}</div>
                         </div>
                         <span class="close">
-                            <img src="{% static 'assets/iconClose.svg' %}" alt="teste" />
+                            <img src="{% static 'assets/iconClose.svg' %}"
+                                 alt="icon-close"
+                                 width="24px"
+                                 height="24px" />
                         </span>
                     </div>
                     <div class="div-input">
                         <label>Titulo</label>
-                        <input type="text" placeholder="Insira o titulo..." />
+                        {{ form.title }}
                     </div>
                     <div class="row">
                         <div class="div-input-select">
                             <label>Responsável</label>
-                            <select name="" id="">
-                                <option value="0">---</option>
-                                                <option value="1">Victor Hugo</option>
-                                      </select>
-                                </div>
-                                <div class="div-input-select">
-                                  <label>Relator</label>
-                              <select name="" id="">
-                                <option value="0">---</option>
-            <option value="1">Admin</option>
-        </select>
-    </div>
-    <div class="div-input-select">
-        <label>Story Point</label>
-        <select name="" id="">
-            <option value="0">---</option>
-            <option value="1">1</option>
-        </select>
-    </div>
-</div>
-<div class="div-input-desc">
-    <label>Descrição</label>
-    <input type="" name="" value="" placeholder="Insira uma descrição..." />
-</div>
-<div class="content-images">
-    <label>Anexos</label>
-    <div class="row-images">
-        <div class="container-image">
-            <div class="div-image">
-                <img src="" alt="" />
+                            {{ form.user }}
+                        </div>
+                        <div class="div-input-select">
+                            <label>Relator</label>
+                            {{ form.user }}
+                        </div>
+                        <div class="div-input-select">
+                            <label>Story Point</label>
+                            {{ form.list }}
+                        </div>
+                    </div>
+                    <div class="div-input-desc">
+                        <label>Descrição</label>
+                        {{ form.description }}
+                    </div>
+                    <div class="content-images">
+                        <label>Anexos</label>
+                        <div class="row-images">
+                            <div class="container-image">
+                                <div class="div-image"></div>
+                                <p>REMOVER</p>
+                            </div>
+                            <div class="container-image">
+                                <div class="div-image"></div>
+                                <p>REMOVER</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit">SALVAR</button>
+                </form>
             </div>
-            <p>REMOVER</p>
         </div>
-        <div class="container-image">
-            <div class="div-image">
-                <img src="" alt="" />
-            </div>
-            <p>REMOVER</p>
-        </div>
-    </div>
-</div>
-<button>SALVAR</button>
-</form>
-</div>
-</div>
-</body>
+    </body>
 </html>

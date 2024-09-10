@@ -316,3 +316,12 @@ form button {
   display: flex;
   gap: 8px;
 }
+
+.teste {
+  border-radius: 8px;
+  border: none;
+  padding: 5px 12px;
+  color: #9D2527;
+  font-size: 14px;
+  font-weight: 500;
+}
