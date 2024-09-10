@@ -49,11 +49,14 @@ class Board(models.Model):
   created_at = models.DateTimeField(default=timezone.now)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
 
+  def __str__(self):
+      return self.name
+
+
 class List(models.Model):
   list_id = models.AutoField(primary_key=True)
   name = models.CharField(max_length=255)
   description = models.TextField()
-  order = models.IntegerField()
   board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
   def __str__(self):
@@ -86,10 +89,10 @@ class Card(models.Model):
 
   def __str__(self):
     return self.title
-  
+
   def get_priority_display(self):
     return dict(self.PRIORITY_CHOICES)[self.priority]
-  
+
 
 class MemberCard(models.Model):
   card = models.ForeignKey(Card, on_delete=models.CASCADE)
@@ -111,4 +114,3 @@ class Attachment(models.Model):
   file_url = models.URLField()
   upload_date = models.DateTimeField(default=timezone.now)
   card = models.ForeignKey(Card, on_delete=models.CASCADE)
-
