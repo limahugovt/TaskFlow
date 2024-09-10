@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate
 from .forms import LoginForm, RegisterForm
-from .models import User, Card, List
+from .models import User
 
 def register_view(request):
   if request.method == 'POST':
@@ -36,13 +36,3 @@ def login_view(request):
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
-
-def home_view(request):
-  return render(request, 'index.html')
-
-def home_authenticated(request):
-  listing = List.objects.all()
-  context = {
-    'list': listing
-  }
-  return render(request, 'home.html', context=context)
