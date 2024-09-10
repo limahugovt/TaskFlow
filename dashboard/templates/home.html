@@ -1,131 +1,154 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Dashboard</title>
-        <link rel="stylesheet" href="{% static 'styles/homepage.css' %}" />
-        <script src="{% static 'scripts/index.js' %}"></script>
-        <meta name="description" content="Description of the page content" />
-    </head>
-    <body>
-        <h1>Quadros</h1>
-        <div class="content-cards">
-            {% for list in list %}
-                <div class="vertical-list">
-                    <h2 class="list-name">{{ list.name }}</h2>
-                    <div class="cards-list">
-                        {% for card in list.card_set.all %}
-                            <div class="card-main">
-                                <div class="header-card">
-                                    <div class="user-info">
-                                        <img src="{% static 'assets/userImage.svg' %}"
-                                             alt="logo"
-                                             height="25px"
-                                             width="25px" />
-                                        <p>{{ card.user }}</p>
-                                    </div>
-                                    <div class="div-hours">
-                                        <img src="{% static 'assets/iconClock.svg' %}"
-                                             alt="logo"
-                                             height="16px"
-                                             width="16px" />
-                                        <p>há {{ card.delivery_date|time:"H:i" }}</p>
-                                    </div>
-                                </div>
-                                <div class="content-description">
-                                    <h3 class="title-card">{{ card.title }}</h3>
-                                    <p class="description">{{ card.description }}</p>
-                                </div>
-                                <div class="div-labels">
-                                    <div class="label" style="background-color: #ffb1b1">
-                                        <p>{{ card.get_priority_display }}</p>
-                                    </div>
-                                    <div class="label" style="background-color: #b1d3ff">
-                                        <p>{{ card.epic_link }}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endfor %}
-                    </div>
-                    <button class="add-card" id="openModalBtn">
-                        <img src="{% static 'assets/iconPlus.svg' %}"
-                             alt="logo"
-                             height="20px"
-                             width="20px" />
-                        Novo
-                    </button>
-                </div>
-            {% endfor %}
-        </div>
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <form class="form-register" method="post" action="{% url 'create_card' %}">
-                    {% csrf_token %}
-                    <div class="header-modal">
-                        <div class="div-options">
-                            <div class="select-header">
-                                {{ form.epic_link }}
-                                <img src="{% static 'assets/arrowDonw.svg' %}"
-                                     alt="arrow-donw"
-                                     width="10px"
-                                     height="5px" />
-                            </div>
-                            <div class="select-header">
-                                {{ form.priority }}
-                                <img src="{% static 'assets/arrowDonw.svg' %}"
-                                     alt="arrow-donw"
-                                     width="10px"
-                                     height="5px" />
-                            </div>
-                            <div class="select-header">{{ form.delivery_date }}</div>
-                        </div>
-                        <span class="close">
-                            <img src="{% static 'assets/iconClose.svg' %}"
-                                 alt="icon-close"
-                                 width="24px"
-                                 height="24px" />
-                        </span>
-                    </div>
-                    <div class="div-input">
-                        <label>Titulo</label>
-                        {{ form.title }}
-                    </div>
-                    <div class="row">
-                        <div class="div-input-select">
-                            <label>Responsável</label>
-                            {{ form.user }}
-                        </div>
-                        <div class="div-input-select">
-                            <label>Relator</label>
-                            {{ form.user }}
-                        </div>
-                        <div class="div-input-select">
-                            <label>Story Point</label>
-                            {{ form.list }}
-                        </div>
-                    </div>
-                    <div class="div-input-desc">
-                        <label>Descrição</label>
-                        {{ form.description }}
-                    </div>
-                    <div class="content-images">
-                        <label>Anexos</label>
-                        <div class="row-images">
-                            <div class="container-image">
-                                <div class="div-image"></div>
-                                <p>REMOVER</p>
-                            </div>
-                            <div class="container-image">
-                                <div class="div-image"></div>
-                                <p>REMOVER</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit">SALVAR</button>
-                </form>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'styles/homepage.css' %}" />
+    <script src="{% static 'scripts/index.js' %}"></script>
+    <meta name="description" content="Description of the page content" />
+  </head>
+  <body>
+    <h1>Quadros</h1>
+    <div class="content-cards">
+      {% for list in list %}
+      <div class="vertical-list">
+        <h2 class="list-name">{{ list.name }}</h2>
+        {% if list.card_set.exists %}
+        <div class="cards-list">
+          {% for card in list.card_set.all %}
+          <div class="card-main">
+            <div class="header-card">
+              <div class="user-info">
+                <img
+                  src="{% static 'assets/userImage.svg' %}"
+                  alt="logo"
+                  height="25px"
+                  width="25px"
+                />
+                <p>{{ card.user }}</p>
+              </div>
+              <div class="div-hours">
+                <img
+                  src="{% static 'assets/iconClock.svg' %}"
+                  alt="logo"
+                  height="16px"
+                  width="16px"
+                />
+                <p>há {{ card.delivery_date|time:"H:i" }}</p>
+              </div>
             </div>
+            <div class="content-description">
+              <h3 class="title-card">{{ card.title }}</h3>
+              <p class="description">{{ card.description }}</p>
+            </div>
+            <div class="div-labels">
+              <div class="label" style="background-color: #ffb1b1">
+                <p>{{ card.get_priority_display }}</p>
+              </div>
+              <div class="label" style="background-color: #b1d3ff">
+                <p>{{ card.epic_link }}</p>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
         </div>
-    </body>
+        {% else %}
+        <div class="not-have-cards">
+          <p>Não há cartões <strong>{{list.name}}</strong></p>
+        </div>
+        {% endif %}
+        <button class="add-card" id="openModalBtn">
+          <img
+            src="{% static 'assets/iconPlus.svg' %}"
+            alt="logo"
+            height="20px"
+            width="20px"
+          />
+          Novo
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <form
+          class="form-register"
+          method="post"
+          action="{% url 'create_card' %}"
+        >
+          {% csrf_token %}
+          <div class="header-modal">
+            <div class="div-options">
+              <div class="select-header">
+                {{ form.epic_link }}
+                <img
+                  src="{% static 'assets/arrowDonw.svg' %}"
+                  alt="arrow-donw"
+                  width="10px"
+                  height="5px"
+                />
+              </div>
+              <div class="select-header">
+                {{ form.priority }}
+                <img
+                  src="{% static 'assets/arrowDonw.svg' %}"
+                  alt="arrow-donw"
+                  width="10px"
+                  height="5px"
+                />
+              </div>
+              <div class="select-header">{{ form.delivery_date }}</div>
+            </div>
+            <span class="close">
+              <img
+                src="{% static 'assets/iconClose.svg' %}"
+                alt="icon-close"
+                width="24px"
+                height="24px"
+              />
+            </span>
+          </div>
+          <div class="div-input">
+            <label>Titulo</label>
+            {{ form.title }}
+          </div>
+          <div class="row">
+            <div class="div-input-select">
+              <label>Responsável</label>
+              {{ form.assigned }}
+            </div>
+            <div class="div-input-select">
+              <label>Relator</label>
+              {{ form.user }}
+            </div>
+            <div class="div-input-select">
+              <label>Story Point</label>
+              {{ form.list }}
+            </div>
+          </div>
+          <div class="div-input-desc">
+            <label>Descrição</label>
+            {{ form.description }}
+          </div>
+          <div class="content-images">
+            <label>Anexos</label>
+            <div class="row-images">
+              <div class="container-image">
+                <div class="div-image"></div>
+                <p>REMOVER</p>
+              </div>
+              <div class="container-image">
+                <div class="div-image"></div>
+                <p>REMOVER</p>
+              </div>
+            </div>
+          </div>
+          <button type="submit">SALVAR</button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>

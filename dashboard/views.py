@@ -22,5 +22,6 @@ def create_card(request):
             form.save()
             messages.success(request, 'Card created successfully.')
         else:
+            print(form.errors)
             messages.error(request, 'There was an error creating the card.')
     return redirect('homepage')

@@ -83,23 +83,18 @@ class Card(models.Model):
   creation_date = models.DateTimeField(default=timezone.now)
   delivery_date = models.DateTimeField(null=True, blank=True)
   priority = models.IntegerField(default=0, choices=PRIORITY_CHOICES)
-  epic_link = models.ForeignKey(EpicLink, on_delete=models.CASCADE, null=True, blank=True)
+  epic_link = models.ForeignKey(EpicLink, on_delete=models.CASCADE, blank=False)
   list = models.ForeignKey(List, on_delete=models.CASCADE)
   user = models.ForeignKey(User, on_delete=models.CASCADE)
+  assigned = models.ForeignKey(User, on_delete=models.CASCADE, related_name='assigned_cards')
+
+
 
   def __str__(self):
     return self.title
 
   def get_priority_display(self):
     return dict(self.PRIORITY_CHOICES)[self.priority]
-
-
-class MemberCard(models.Model):
-  card = models.ForeignKey(Card, on_delete=models.CASCADE)
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
-
-  class Meta:
-    unique_together = ('card', 'user')
 
 class Comment(models.Model):
   comment_id = models.AutoField(primary_key=True)

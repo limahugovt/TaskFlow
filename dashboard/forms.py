@@ -9,7 +9,7 @@ class CardForm(forms.ModelForm):
     title = forms.CharField(max_length=255, widget=forms.TextInput(attrs={'placeholder': 'Insira o titulo....'}))
     description = forms.CharField(max_length=800, required=True, widget=forms.TextInput(attrs={'class': '.div-input-desc', 'placeholder': 'Insira a descrição....', }))
     delivery_date = forms.DateTimeField(
-        widget=forms.DateInput(attrs={'type': 'date', 'class': 'teste', 'style': "background-color: #FFD6B1"}),
+        widget=forms.DateInput(attrs={'type': 'datetime-local', 'class': 'teste', 'style': "background-color: #FFD6B1"}),
     )
     priority = forms.ChoiceField(
         choices=[('', 'Prioridade')] + list(Card.PRIORITY_CHOICES),
@@ -24,9 +24,5 @@ class CardForm(forms.ModelForm):
     )
     list = forms.ModelChoiceField(queryset=List.objects.all())
     user = forms.ModelChoiceField(queryset=User.objects.all())
+    assigned = forms.ModelChoiceField(queryset=User.objects.all(), required=True)
 
-    def clean_epic_link(self):
-        epic_link = self.cleaned_data.get('epic_link')
-        if epic_link and Card.objects.filter(epic_link=epic_link).exists():
-            raise forms.ValidationError("This epic link is already registered.")
-        return epic_link
