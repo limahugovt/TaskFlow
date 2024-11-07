@@ -1,0 +1,85 @@
+{% extends "aside.html" %}
+{% load static %}
+{% block content %}
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <!-- Logo -->
+            <div class="logo">
+                <img src="{% static 'assets/LogoText.svg' %}"
+                     alt="logo"
+                     height="55px"
+                     width="222px" />
+            </div>
+            <!-- User Profile -->
+            <div class="user-profile">
+                <img src="{% static 'assets/userImage.svg' %}"
+                     alt="logo"
+                     height="56px"
+                     width="56px" />
+                <div class="user-info">
+                    <h3 class="user-name">Victor Hugo</h3>
+                    <p class="user-role">Programador</p>
+                </div>
+                <button class="dropdown-button">
+                    <span class="chevron-icon">
+                        <img src="{% static 'assets/arrowDonw.svg' %}"
+                             alt="logo"
+                             width="12px"
+                             height="6px" />
+                    </span>
+                </button>
+            </div>
+            <!-- Navigation -->
+            <nav class="navigation">
+                <div>
+                    <h4 class="menu-title">Menu</h4>
+                    <ul class="menu-list">
+                        <li>
+                            <a href="#" class="menu-item active">Início</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">Quadros</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">Colaboradores</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">Compromissos</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">Configurações</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="menu-title">Times</h4>
+                    <ul class="menu-list">
+                        <li>
+                            <a href="#" class="menu-item">Pechinchou</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">Nadic</a>
+                        </li>
+                        <li>
+                            <a href="#" class="menu-item">TCC</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </aside>
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="content-wrapper">
+                <div class="dashboard-header">
+                    <h1 class="dashboard-title">Dashboard</h1>
+                </div>
+                <div class="card-grid">
+                    <div class="card frontend-card">Frontend</div>
+                    <div class="card backend-card">Backend</div>
+                    <div class="card new-board-card">Novo Quadro</div>
+                </div>
+            </div>
+        </main>
+    </div>
+{% endblock content %}

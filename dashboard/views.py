@@ -25,3 +25,7 @@ def create_card(request):
             print(form.errors)
             messages.error(request, 'There was an error creating the card.')
     return redirect('homepage')
+
+
+def create_dashboard(request):
+    return render(request, 'dashboard.html')
